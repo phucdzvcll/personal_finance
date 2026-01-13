@@ -125,8 +125,8 @@ class _LoginPageState extends State<LoginPage> {
                   BlocConsumer<LoginCubit, LoginState>(
                     listener: (context, state) {
                       if (state is LoginSuccess) {
-                        // Navigate to home page
-                        context.router.replaceAll([const HomeRoute()]);
+                        // Navigate to main tab page
+                        context.router.replaceAll([const MainTabRoute()]);
                       } else if (state is LoginError) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(

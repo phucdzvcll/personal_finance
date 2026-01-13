@@ -2,6 +2,9 @@ import 'package:auto_route/auto_route.dart';
 import '../../presentation/pages/auth/login_page.dart';
 import '../../presentation/pages/auth/register_page.dart';
 import '../../presentation/pages/home/home_page.dart';
+import '../../presentation/pages/transactions/transactions_page.dart';
+import '../../presentation/pages/settings/settings_page.dart';
+import '../../presentation/pages/main_tab/main_tab_page.dart';
 
 part 'app_router.gr.dart';
 
@@ -17,7 +20,18 @@ class AppRouter extends _$AppRouter {
           page: RegisterRoute.page,
         ),
         AutoRoute(
-          page: HomeRoute.page,
+          page: MainTabRoute.page,
+          children: [
+            AutoRoute(
+              page: HomeRoute.page,
+            ),
+            AutoRoute(
+              page: TransactionsRoute.page,
+            ),
+            AutoRoute(
+              page: SettingsRoute.page,
+            ),
+          ],
         ),
       ];
 }

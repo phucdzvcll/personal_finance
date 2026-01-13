@@ -178,8 +178,8 @@ class _RegisterPageState extends State<RegisterPage> {
                   BlocConsumer<RegisterCubit, RegisterState>(
                     listener: (context, state) {
                       if (state is RegisterSuccess) {
-                        // Navigate to home page
-                        context.router.replaceAll([const HomeRoute()]);
+                        // Navigate to main tab page
+                        context.router.replaceAll([const MainTabRoute()]);
                       } else if (state is RegisterError) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
