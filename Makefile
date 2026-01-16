@@ -199,8 +199,29 @@ ci-build-prod: build-apk-prod ## Build production APK for CI
 setup-ios-flavors: ## Open Xcode and show iOS flavors setup instructions
 	@./scripts/setup_ios_flavors.sh
 
-# Quick commands
+# Quick commands (most common shortcuts)
 quick-dev: gen run-dev ## Quick dev: generate and run dev flavor
 quick-stg: gen run-stg ## Quick staging: generate and run staging flavor
 quick-prod: gen run-prod ## Quick prod: generate and run production flavor
 quick-ios: gen run-ios ## Quick iOS: generate and run on iOS device
+
+# Ultra-short aliases (for daily use)
+g: gen ## Shortcut: Generate code
+i: install ## Shortcut: Install dependencies
+r: run-dev ## Shortcut: Run dev flavor
+c: clean ## Shortcut: Clean build files
+f: format ## Shortcut: Format code
+l: lint ## Shortcut: Run linter
+t: test ## Shortcut: Run tests
+d: devices ## Shortcut: List devices
+
+# Combined workflows
+fresh: clean install gen ## Fresh start: clean, install, and generate
+rebuild: clean install gen run-dev ## Rebuild: clean, install, generate, and run
+check: format-check lint test ## Check all: format, lint, and test
+build-all: build-apk-dev build-apk-stg build-apk-prod ## Build all Android flavors
+
+# Development shortcuts
+watch: gen-watch ## Watch mode: auto-generate on file changes
+run: run-dev ## Default run: dev flavor
+build: build-apk-dev ## Default build: dev APK

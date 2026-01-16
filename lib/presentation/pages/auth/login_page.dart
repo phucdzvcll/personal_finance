@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:personal_finance/core/router/app_router.dart';
+import '../../../core/utils/input_validator.dart';
 import '../../../di/injection.dart';
 import '../../cubit/auth/login_cubit.dart';
 import '../../widgets/common/loading_widget.dart';
@@ -17,13 +18,13 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
+  final _usernameOrEmailController = TextEditingController();
   final _passwordController = TextEditingController();
   bool _obscurePassword = true;
 
   @override
   void dispose() {
-    _emailController.dispose();
+    _usernameOrEmailController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -31,7 +32,7 @@ class _LoginPageState extends State<LoginPage> {
   void _handleLogin(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       context.read<LoginCubit>().login(
-            _emailController.text.trim(),
+            _usernameOrEmailController.text.trim(),
             _passwordController.text,
           );
     }
@@ -72,21 +73,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 48.h),
                   TextFormField(
-                    controller: _emailController,
-                    keyboardType: TextInputType.emailAddress,
+                    controller: _usernameOrEmailController,
+                    keyboardType: TextInputType.text,
+                    textCapitalization: TextCapitalization.none,
                     decoration: InputDecoration(
-                      labelText: 'Email',
-                      prefixIcon: const Icon(Icons.email_outlined),
+                      labelText: 'Username or Email',
+                      hintText: 'Enter username or email',
+                      prefixIcon: const Icon(Icons.person_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
                       ),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return 'Please enter your username or email';
                       }
-                      if (!value.contains('@')) {
-                        return 'Please enter a valid email';
+                      if (!InputValidator.isValidUsernameOrEmail(value.trim())) {
+                        return 'Please enter a valid username or email';
                       }
                       return null;
                     },

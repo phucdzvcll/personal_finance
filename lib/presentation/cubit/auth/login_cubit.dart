@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../../core/utils/input_validator.dart';
 import '../../../domain/entities/auth_response.dart';
 import '../../../domain/usecases/login_usecase.dart';
@@ -14,15 +14,15 @@ class LoginCubit extends BaseCubit<LoginState> {
 
   LoginCubit(this.loginUseCase) : super(LoginInitial());
 
-  Future<void> login(String email, String password) async {
+  Future<void> login(String usernameOrEmail, String password) async {
     // Validate inputs
-    if (email.isEmpty) {
-      emit(LoginError('Please enter your email'));
+    if (usernameOrEmail.isEmpty) {
+      emit(LoginError('Please enter your username or email'));
       return;
     }
 
-    if (!InputValidator.isValidEmail(email)) {
-      emit(LoginError('Please enter a valid email'));
+    if (!InputValidator.isValidUsernameOrEmail(usernameOrEmail)) {
+      emit(LoginError('Please enter a valid username or email'));
       return;
     }
 
@@ -34,7 +34,7 @@ class LoginCubit extends BaseCubit<LoginState> {
     emit(LoginLoading());
 
     final result = await loginUseCase(
-      LoginParams(email: email, password: password),
+      LoginParams(usernameOrEmail: usernameOrEmail, password: password),
     );
 
     result.fold(

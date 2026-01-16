@@ -19,4 +19,16 @@ class InputValidator {
   static bool isValidPhoneNumber(String phone) {
     return RegExp(r'^\+?[\d\s-()]{10,}$').hasMatch(phone);
   }
+
+  /// Validates username or email
+  /// Accepts either a username (alphanumeric, underscore, dot, hyphen) or email format
+  static bool isValidUsernameOrEmail(String input) {
+    // Username: 3-30 characters, alphanumeric, underscore, dot, hyphen
+    final usernamePattern = RegExp(r'^[a-zA-Z0-9._-]{3,30}$');
+    // Email pattern
+    final emailPattern = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$',
+    );
+    return usernamePattern.hasMatch(input) || emailPattern.hasMatch(input);
+  }
 }

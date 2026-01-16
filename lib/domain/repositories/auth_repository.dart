@@ -4,9 +4,9 @@ import '../entities/auth_response.dart';
 import 'base_repository.dart';
 
 abstract class AuthRepository extends BaseRepository {
-  /// Login with email and password
+  /// Login with username or email and password
   Future<Either<Failure, AuthResponse>> login({
-    required String email,
+    required String usernameOrEmail,
     required String password,
   });
 

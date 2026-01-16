@@ -22,11 +22,14 @@ class AuthRepositoryImpl extends BaseRepositoryImpl implements AuthRepository {
 
   @override
   Future<Either<Failure, AuthResponse>> login({
-    required String email,
+    required String usernameOrEmail,
     required String password,
   }) async {
     try {
-      final request = LoginRequest(email: email, password: password);
+      final request = LoginRequest(
+        usernameOrEmail: usernameOrEmail,
+        password: password,
+      );
       final response = await remoteDataSource.login(request);
       return Right(response.toEntity());
     } on ServerException catch (e) {

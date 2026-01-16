@@ -7,16 +7,16 @@ import '../entities/auth_response.dart';
 import '../repositories/auth_repository.dart';
 
 class LoginParams extends Equatable {
-  final String email;
+  final String usernameOrEmail;
   final String password;
 
   const LoginParams({
-    required this.email,
+    required this.usernameOrEmail,
     required this.password,
   });
 
   @override
-  List<Object> get props => [email, password];
+  List<Object> get props => [usernameOrEmail, password];
 }
 
 @injectable
@@ -28,7 +28,7 @@ class LoginUseCase implements UseCase<AuthResponse, LoginParams> {
   @override
   Future<Either<Failure, AuthResponse>> call(LoginParams params) async {
     return await repository.login(
-      email: params.email,
+      usernameOrEmail: params.usernameOrEmail,
       password: params.password,
     );
   }

@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'login_request.freezed.dart';
@@ -10,7 +8,7 @@ class LoginRequest with _$LoginRequest {
   const LoginRequest._();
   
   const factory LoginRequest({
-    @JsonKey(name: "usernameOrEmail") required String email,
+    @JsonKey(name: "usernameOrEmail") required String usernameOrEmail,
     required String password,
   }) = _LoginRequest;
 
