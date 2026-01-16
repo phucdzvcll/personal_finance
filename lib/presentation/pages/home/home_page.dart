@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../../../app.dart';
 
 @RoutePage()
 class HomePage extends StatelessWidget {
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Personal Finance'),
+        title: Text(context.l10n.appName),
         centerTitle: true,
       ),
       body: Center(
@@ -24,12 +25,12 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(height: 16.h),
             Text(
-              'Welcome to Personal Finance',
+              context.l10n.welcomeToPersonalFinance,
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             SizedBox(height: 8.h),
             Text(
-              'Start managing your finances',
+              context.l10n.startManagingFinances,
               style: Theme.of(context).textTheme.bodyMedium,
             ),
           ],

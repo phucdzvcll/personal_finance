@@ -1,0 +1,135 @@
+{
+  "@@locale": "en",
+  "appName": "Personal Finance",
+  "@appName": {
+    "description": "The application name"
+  },
+  "welcomeBack": "Welcome Back",
+  "@welcomeBack": {
+    "description": "Welcome message on login page"
+  },
+  "signInToContinue": "Sign in to continue",
+  "@signInToContinue": {
+    "description": "Subtitle on login page"
+  },
+  "usernameOrEmail": "Username or Email",
+  "@usernameOrEmail": {
+    "description": "Label for username or email input field"
+  },
+  "enterUsernameOrEmail": "Enter username or email",
+  "@enterUsernameOrEmail": {
+    "description": "Hint text for username or email input field"
+  },
+  "pleaseEnterUsernameOrEmail": "Please enter your username or email",
+  "@pleaseEnterUsernameOrEmail": {
+    "description": "Validation message for empty username or email"
+  },
+  "pleaseEnterValidUsernameOrEmail": "Please enter a valid username or email",
+  "@pleaseEnterValidUsernameOrEmail": {
+    "description": "Validation message for invalid username or email"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Label for password input field"
+  },
+  "pleaseEnterPassword": "Please enter your password",
+  "@pleaseEnterPassword": {
+    "description": "Validation message for empty password"
+  },
+  "signIn": "Sign In",
+  "@signIn": {
+    "description": "Sign in button text"
+  },
+  "dontHaveAccount": "Don't have an account? ",
+  "@dontHaveAccount": {
+    "description": "Text before sign up link"
+  },
+  "signUp": "Sign Up",
+  "@signUp": {
+    "description": "Sign up button/link text"
+  },
+  "createAccount": "Create Account",
+  "@createAccount": {
+    "description": "Create account page title"
+  },
+  "signUpToGetStarted": "Sign up to get started",
+  "@signUpToGetStarted": {
+    "description": "Subtitle on register page"
+  },
+  "fullNameOptional": "Full Name (Optional)",
+  "@fullNameOptional": {
+    "description": "Label for full name input field"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Label for email input field"
+  },
+  "pleaseEnterEmail": "Please enter your email",
+  "@pleaseEnterEmail": {
+    "description": "Validation message for empty email"
+  },
+  "pleaseEnterValidEmail": "Please enter a valid email",
+  "@pleaseEnterValidEmail": {
+    "description": "Validation message for invalid email"
+  },
+  "pleaseEnterPasswordField": "Please enter a password",
+  "@pleaseEnterPasswordField": {
+    "description": "Validation message for empty password in register"
+  },
+  "passwordMinLength": "Password must be at least 8 characters",
+  "@passwordMinLength": {
+    "description": "Validation message for password minimum length"
+  },
+  "confirmPassword": "Confirm Password",
+  "@confirmPassword": {
+    "description": "Label for confirm password input field"
+  },
+  "pleaseConfirmPassword": "Please confirm your password",
+  "@pleaseConfirmPassword": {
+    "description": "Validation message for empty confirm password"
+  },
+  "passwordsDoNotMatch": "Passwords do not match",
+  "@passwordsDoNotMatch": {
+    "description": "Validation message when passwords don't match"
+  },
+  "alreadyHaveAccount": "Already have an account? ",
+  "@alreadyHaveAccount": {
+    "description": "Text before sign in link"
+  },
+  "welcomeToPersonalFinance": "Welcome to Personal Finance",
+  "@welcomeToPersonalFinance": {
+    "description": "Welcome message on home page"
+  },
+  "startManagingFinances": "Start managing your finances",
+  "@startManagingFinances": {
+    "description": "Subtitle on home page"
+  },
+  "settings": "Settings",
+  "@settings": {
+    "description": "Settings page title"
+  },
+  "configureAppSettings": "Configure your app settings",
+  "@configureAppSettings": {
+    "description": "Subtitle on settings page"
+  },
+  "categoryManagement": "Category Management",
+  "@categoryManagement": {
+    "description": "Category management section title in settings"
+  },
+  "language": "Language",
+  "@language": {
+    "description": "Language section title in settings"
+  },
+  "logOut": "Log out",
+  "@logOut": {
+    "description": "Log out button text"
+  },
+  "confirmLogout": "Are you sure you want to log out?",
+  "@confirmLogout": {
+    "description": "Logout confirmation dialog message"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Cancel button text"
+  }
+}

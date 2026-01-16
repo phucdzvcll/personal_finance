@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:personal_finance/core/router/app_router.dart';
+import '../../../app.dart';
 import '../../../core/utils/input_validator.dart';
 import '../../../di/injection.dart';
 import '../../cubit/auth/login_cubit.dart';
@@ -59,13 +60,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 24.h),
                   Text(
-                    'Welcome Back',
+                    context.l10n.welcomeBack,
                     style: Theme.of(context).textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    'Sign in to continue',
+                    context.l10n.signInToContinue,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                         ),
@@ -77,8 +78,8 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.text,
                     textCapitalization: TextCapitalization.none,
                     decoration: InputDecoration(
-                      labelText: 'Username or Email',
-                      hintText: 'Enter username or email',
+                      labelText: context.l10n.usernameOrEmail,
+                      hintText: context.l10n.enterUsernameOrEmail,
                       prefixIcon: const Icon(Icons.person_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -86,10 +87,10 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your username or email';
+                        return context.l10n.pleaseEnterUsernameOrEmail;
                       }
                       if (!InputValidator.isValidUsernameOrEmail(value.trim())) {
-                        return 'Please enter a valid username or email';
+                        return context.l10n.pleaseEnterValidUsernameOrEmail;
                       }
                       return null;
                     },
@@ -99,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      labelText: context.l10n.password,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -119,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your password';
+                        return context.l10n.pleaseEnterPassword;
                       }
                       return null;
                     },
@@ -152,7 +153,7 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         child: Text(
-                          'Sign In',
+                          context.l10n.signIn,
                           style: TextStyle(fontSize: 16.sp),
                         ),
                       );
@@ -163,14 +164,14 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Don't have an account? ",
+                        context.l10n.dontHaveAccount,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       TextButton(
                         onPressed: () {
                           context.router.push(const RegisterRoute());
                         },
-                        child: const Text('Sign Up'),
+                        child: Text(context.l10n.signUp),
                       ),
                     ],
                   ),

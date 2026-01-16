@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:personal_finance/core/router/app_router.dart';
+import '../../../app.dart';
 import '../../../di/injection.dart';
 import '../../cubit/auth/register_cubit.dart';
 import '../../widgets/common/loading_widget.dart';
@@ -52,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
       create: (context) => getIt<RegisterCubit>(),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('Create Account'),
+          title: Text(context.l10n.createAccount),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -64,13 +65,13 @@ class _RegisterPageState extends State<RegisterPage> {
                 children: [
                   SizedBox(height: 24.h),
                   Text(
-                    'Create Account',
+                    context.l10n.createAccount,
                     style: Theme.of(context).textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 8.h),
                   Text(
-                    'Sign up to get started',
+                    context.l10n.signUpToGetStarted,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
                         ),
@@ -80,7 +81,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   TextFormField(
                     controller: _nameController,
                     decoration: InputDecoration(
-                      labelText: 'Full Name (Optional)',
+                      labelText: context.l10n.fullNameOptional,
                       prefixIcon: const Icon(Icons.person_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -92,7 +93,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      labelText: context.l10n.email,
                       prefixIcon: const Icon(Icons.email_outlined),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.r),
@@ -100,10 +101,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your email';
+                        return context.l10n.pleaseEnterEmail;
                       }
                       if (!value.contains('@')) {
-                        return 'Please enter a valid email';
+                        return context.l10n.pleaseEnterValidEmail;
                       }
                       return null;
                     },
@@ -113,7 +114,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _passwordController,
                     obscureText: _obscurePassword,
                     decoration: InputDecoration(
-                      labelText: 'Password',
+                      labelText: context.l10n.password,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -133,10 +134,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter a password';
+                        return context.l10n.pleaseEnterPasswordField;
                       }
                       if (value.length < 8) {
-                        return 'Password must be at least 8 characters';
+                        return context.l10n.passwordMinLength;
                       }
                       return null;
                     },
@@ -146,7 +147,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     controller: _confirmPasswordController,
                     obscureText: _obscureConfirmPassword,
                     decoration: InputDecoration(
-                      labelText: 'Confirm Password',
+                      labelText: context.l10n.confirmPassword,
                       prefixIcon: const Icon(Icons.lock_outlined),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -166,10 +167,10 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please confirm your password';
+                        return context.l10n.pleaseConfirmPassword;
                       }
                       if (value != _passwordController.text) {
-                        return 'Passwords do not match';
+                        return context.l10n.passwordsDoNotMatch;
                       }
                       return null;
                     },
@@ -202,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ),
                         child: Text(
-                          'Sign Up',
+                          context.l10n.signUp,
                           style: TextStyle(fontSize: 16.sp),
                         ),
                       );
@@ -213,14 +214,14 @@ class _RegisterPageState extends State<RegisterPage> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Already have an account? ',
+                        context.l10n.alreadyHaveAccount,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       TextButton(
                         onPressed: () {
                           context.router.pop();
                         },
-                        child: const Text('Sign In'),
+                        child: Text(context.l10n.signIn),
                       ),
                     ],
                   ),
