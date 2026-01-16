@@ -9,8 +9,7 @@ import '../../../core/constants/icons.dart';
 import '../../../domain/entities/category.dart';
 import '../../../domain/entities/category_type.dart';
 import '../../../di/injection.dart';
-import '../../cubit/category/create_category_cubit.dart';
-import '../../cubit/category/update_category_cubit.dart';
+import '../../cubit/category/category_form_cubit.dart';
 import '../../widgets/common/loading_widget.dart';
 
 @RoutePage()
@@ -65,24 +64,24 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
   }
 
   void _handleSaveCategory(BuildContext context) {
-    if (_formKey.currentState!.validate()) {
-      if (_isEditMode) {
-        context.read<UpdateCategoryCubit>().updateCategory(
-              id: widget.category!.id,
-              name: _nameController.text.trim(),
-              type: _selectedType,
-              icon: _selectedIcon,
-              color: _selectedColor,
-            );
-      } else {
-        context.read<CreateCategoryCubit>().createCategory(
-              name: _nameController.text.trim(),
-              type: _selectedType,
-              icon: _selectedIcon,
-              color: _selectedColor,
-            );
+      if (_formKey.currentState!.validate()) {
+        if (_isEditMode) {
+          context.read<CategoryFormCubit>().updateCategory(
+                id: widget.category!.id,
+                name: _nameController.text.trim(),
+                type: _selectedType,
+                icon: _selectedIcon,
+                color: _selectedColor,
+              );
+        } else {
+          context.read<CategoryFormCubit>().createCategory(
+                name: _nameController.text.trim(),
+                type: _selectedType,
+                icon: _selectedIcon,
+                color: _selectedColor,
+              );
+        }
       }
-    }
   }
 
   void _showIconPickerDialog(BuildContext context) {
@@ -255,11 +254,8 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => getIt<CreateCategoryCubit>()),
-        BlocProvider(create: (context) => getIt<UpdateCategoryCubit>()),
-      ],
+    return BlocProvider(
+      create: (context) => getIt<CategoryFormCubit>(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(_isEditMode ? context.l10n.editCategory : context.l10n.addNewCategory),
@@ -267,55 +263,33 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
         body: SafeArea(
           child: SingleChildScrollView(
             padding: EdgeInsets.all(24.w),
-            child: MultiBlocListener(
-              listeners: [
-                BlocListener<CreateCategoryCubit, CreateCategoryState>(
-                  listener: (context, state) {
-                    if (state is CreateCategorySuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(context.l10n.categoryCreatedSuccessfully),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
-                      context.router.pop();
-                    } else if (state is CreateCategoryError) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(state.message),
-                          backgroundColor: Theme.of(context).colorScheme.error,
-                        ),
-                      );
-                    }
-                  },
-                ),
-                BlocListener<UpdateCategoryCubit, CreateCategoryState>(
-                  listener: (context, state) {
-                    if (state is CreateCategorySuccess) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(context.l10n.categoryUpdatedSuccessfully),
-                          backgroundColor: Colors.green,
-                        ),
-                      );
-                      context.router.pop();
-                    } else if (state is CreateCategoryError) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(state.message),
-                          backgroundColor: Theme.of(context).colorScheme.error,
-                        ),
-                      );
-                    }
-                  },
-                ),
-              ],
+            child: BlocListener<CategoryFormCubit, CategoryFormState>(
+              listener: (context, state) {
+                if (state is CategoryFormSuccess) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        _isEditMode
+                            ? context.l10n.categoryUpdatedSuccessfully
+                            : context.l10n.categoryCreatedSuccessfully,
+                      ),
+                      backgroundColor: Colors.green,
+                    ),
+                  );
+                  context.router.pop();
+                } else if (state is CategoryFormError) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(state.message),
+                      backgroundColor: Theme.of(context).colorScheme.error,
+                    ),
+                  );
+                }
+              },
               child: Builder(
                 builder: (context) {
-                  final createState = context.watch<CreateCategoryCubit>().state;
-                  final updateState = context.watch<UpdateCategoryCubit>().state;
-                  final isLoading = createState is CreateCategoryLoading ||
-                      updateState is CreateCategoryLoading;
+                  final formState = context.watch<CategoryFormCubit>().state;
+                  final isLoading = formState is CategoryFormLoading;
                 return Form(
                   key: _formKey,
                   child: Column(

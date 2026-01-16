@@ -7,8 +7,8 @@ import '../../../app.dart';
 import '../../../core/constants/icons.dart';
 import '../../../core/router/app_router.dart';
 import '../../../di/injection.dart';
-import '../../cubit/category/get_categories_cubit.dart';
-import '../../cubit/category/delete_category_cubit.dart';
+import '../../../domain/entities/category.dart';
+import '../../cubit/category/view_categories_cubit.dart';
 import '../../widgets/common/empty_widget.dart';
 import '../../widgets/common/loading_widget.dart';
 import '../../widgets/category/swipeable_category_item.dart';
@@ -32,11 +32,8 @@ class ViewCategoriesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => getIt<GetCategoriesCubit>()..getCategories()),
-        BlocProvider(create: (context) => getIt<DeleteCategoryCubit>()),
-      ],
+    return BlocProvider(
+      create: (context) => getIt<ViewCategoriesCubit>()..getCategories(),
       child: Scaffold(
         appBar: AppBar(
           title: Text(context.l10n.viewCategories),
@@ -48,20 +45,37 @@ class ViewCategoriesPage extends StatelessWidget {
               await context.router.push(AddCategoryRoute());
               // Refresh categories after returning from create
               if (context.mounted) {
-                context.read<GetCategoriesCubit>().getCategories();
+                context.read<ViewCategoriesCubit>().getCategories();
               }
             },
             child: const Icon(Icons.add),
             tooltip: context.l10n.addNewCategory,
           ),
         ),
-        body: BlocBuilder<GetCategoriesCubit, GetCategoriesState>(
+        body: BlocConsumer<ViewCategoriesCubit, ViewCategoriesState>(
+          listener: (context, state) {
+            if (state is ViewCategoriesDeleteSuccess) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(context.l10n.categoryDeletedSuccessfully),
+                  backgroundColor: Colors.green,
+                ),
+              );
+            } else if (state is ViewCategoriesDeleteError) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(state.message),
+                  backgroundColor: Theme.of(context).colorScheme.error,
+                ),
+              );
+            }
+          },
           builder: (context, state) {
-            if (state is GetCategoriesLoading) {
+            if (state is ViewCategoriesLoading) {
               return const LoadingWidget();
             }
 
-            if (state is GetCategoriesError) {
+            if (state is ViewCategoriesError) {
               return Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -80,7 +94,7 @@ class ViewCategoriesPage extends StatelessWidget {
                     SizedBox(height: 24.h),
                     ElevatedButton(
                       onPressed: () {
-                        context.read<GetCategoriesCubit>().getCategories();
+                        context.read<ViewCategoriesCubit>().getCategories();
                       },
                       child: Text(context.l10n.retry),
                     ),
@@ -89,40 +103,30 @@ class ViewCategoriesPage extends StatelessWidget {
               );
             }
 
-            if (state is GetCategoriesSuccess) {
-              final categories = state.categories;
+            // Get categories from different success states
+            List<Category> categories = [];
+            if (state is ViewCategoriesSuccess) {
+              categories = state.categories;
+            } else if (state is ViewCategoriesDeleteSuccess) {
+              categories = state.categories;
+            } else if (state is ViewCategoriesDeleteError) {
+              categories = state.categories;
+            } else if (state is ViewCategoriesDeleting) {
+              categories = state.categories;
+            }
 
-              if (categories.isEmpty) {
-                return EmptyWidget(
-                  message: context.l10n.noCategoriesFound,
-                  icon: Icons.category_outlined,
-                );
-              }
+            if (categories.isEmpty && state is! ViewCategoriesInitial) {
+              return EmptyWidget(
+                message: context.l10n.noCategoriesFound,
+                icon: Icons.category_outlined,
+              );
+            }
 
-              return BlocListener<DeleteCategoryCubit, DeleteCategoryState>(
-                listener: (context, state) {
-                  if (state is DeleteCategorySuccess) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(context.l10n.categoryDeletedSuccessfully),
-                        backgroundColor: Colors.green,
-                      ),
-                    );
-                    // Refresh categories after deletion
-                    context.read<GetCategoriesCubit>().getCategories();
-                  } else if (state is DeleteCategoryError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(state.message),
-                        backgroundColor: Theme.of(context).colorScheme.error,
-                      ),
-                    );
-                  }
+            if (categories.isNotEmpty) {
+              return RefreshIndicator(
+                onRefresh: () async {
+                  context.read<ViewCategoriesCubit>().getCategories();
                 },
-                child: RefreshIndicator(
-                  onRefresh: () async {
-                    context.read<GetCategoriesCubit>().getCategories();
-                  },
                   child: SlidableAutoCloseBehavior(
                     child: ListView.builder(
                       padding: EdgeInsets.all(16.w),
@@ -142,7 +146,7 @@ class ViewCategoriesPage extends StatelessWidget {
                           await context.router.push(AddCategoryRoute(category: category));
                           // Refresh categories after returning from edit
                           if (context.mounted) {
-                            context.read<GetCategoriesCubit>().getCategories();
+                            context.read<ViewCategoriesCubit>().getCategories();
                           }
                         },
                         onDelete: () async {
@@ -172,15 +176,14 @@ class ViewCategoriesPage extends StatelessWidget {
 
                           // If confirmed, delete the category
                           if (confirmed == true && context.mounted) {
-                            context.read<DeleteCategoryCubit>().deleteCategory(category.id);
+                            context.read<ViewCategoriesCubit>().deleteCategory(category.id);
                           }
                         },
                       );
                     },
                     ),
                   ),
-                ),
-              );
+                );
             }
 
             return const SizedBox.shrink();

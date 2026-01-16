@@ -7,6 +7,8 @@ import '../../data/models/refresh_token_request.dart';
 import '../../data/models/category_model.dart';
 import '../../data/models/create_category_request.dart';
 import '../../data/models/update_category_request.dart';
+import '../../data/models/transaction_model.dart';
+import '../../data/models/create_transaction_request.dart';
 
 part 'api_client.g.dart';
 
@@ -48,4 +50,8 @@ abstract class ApiClient {
   /// Delete category endpoint
   @DELETE('/v1/categories/{id}')
   Future<void> deleteCategory(@Path('id') int id);
+
+  /// Create transaction endpoint
+  @POST('/v1/transactions')
+  Future<TransactionModel> createTransaction(@Body() CreateTransactionRequest request);
 }

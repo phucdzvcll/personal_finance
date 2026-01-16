@@ -182,4 +182,61 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get categoryDeletedSuccessfully => 'Xóa danh mục thành công';
+
+  @override
+  String get addTransaction => 'Thêm Giao Dịch';
+
+  @override
+  String get amount => 'Số Tiền';
+
+  @override
+  String get enterAmount => 'Nhập số tiền';
+
+  @override
+  String get pleaseEnterAmount => 'Vui lòng nhập số tiền';
+
+  @override
+  String get amountMustBeGreaterThanZero => 'Số tiền phải lớn hơn 0';
+
+  @override
+  String get transactionType => 'Loại Giao Dịch';
+
+  @override
+  String get category => 'Danh Mục';
+
+  @override
+  String get selectCategory => 'Chọn Danh Mục';
+
+  @override
+  String get pleaseSelectCategory => 'Vui lòng chọn danh mục';
+
+  @override
+  String get transactionDate => 'Ngày Giao Dịch';
+
+  @override
+  String get selectDate => 'Chọn Ngày';
+
+  @override
+  String get pleaseSelectDate => 'Vui lòng chọn ngày';
+
+  @override
+  String get note => 'Ghi Chú';
+
+  @override
+  String get enterNote => 'Nhập ghi chú (tùy chọn)';
+
+  @override
+  String get createTransaction => 'Tạo Giao Dịch';
+
+  @override
+  String get transactionCreatedSuccessfully => 'Tạo giao dịch thành công';
+
+  @override
+  String get fillTransactionDetails => 'Điền thông tin chi tiết giao dịch';
+
+  @override
+  String get transactions => 'Giao Dịch';
+
+  @override
+  String get viewAndManageTransactions => 'Xem và quản lý giao dịch của bạn';
 }

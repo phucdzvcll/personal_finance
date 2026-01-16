@@ -186,4 +186,63 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get categoryDeletedSuccessfully => 'Categoría eliminada exitosamente';
+
+  @override
+  String get addTransaction => 'Agregar Transacción';
+
+  @override
+  String get amount => 'Monto';
+
+  @override
+  String get enterAmount => 'Ingresa el monto';
+
+  @override
+  String get pleaseEnterAmount => 'Por favor ingresa el monto';
+
+  @override
+  String get amountMustBeGreaterThanZero => 'El monto debe ser mayor que 0';
+
+  @override
+  String get transactionType => 'Tipo de Transacción';
+
+  @override
+  String get category => 'Categoría';
+
+  @override
+  String get selectCategory => 'Seleccionar Categoría';
+
+  @override
+  String get pleaseSelectCategory => 'Por favor selecciona una categoría';
+
+  @override
+  String get transactionDate => 'Fecha de Transacción';
+
+  @override
+  String get selectDate => 'Seleccionar Fecha';
+
+  @override
+  String get pleaseSelectDate => 'Por favor selecciona una fecha';
+
+  @override
+  String get note => 'Nota';
+
+  @override
+  String get enterNote => 'Ingresa nota (opcional)';
+
+  @override
+  String get createTransaction => 'Crear Transacción';
+
+  @override
+  String get transactionCreatedSuccessfully =>
+      'Transacción creada exitosamente';
+
+  @override
+  String get fillTransactionDetails =>
+      'Completa los detalles de la transacción';
+
+  @override
+  String get transactions => 'Transacciones';
+
+  @override
+  String get viewAndManageTransactions => 'Ver y gestionar tus transacciones';
 }

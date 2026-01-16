@@ -9,6 +9,7 @@ import '../../presentation/pages/settings/settings_page.dart';
 import '../../presentation/pages/main_tab/main_tab_page.dart';
 import '../../presentation/pages/category/add_category_page.dart';
 import '../../presentation/pages/category/view_categories_page.dart';
+import '../../presentation/pages/transaction/add_transaction_page.dart';
 import '../../presentation/pages/splash/splash_page.dart';
 
 part 'app_router.gr.dart';
@@ -46,6 +47,9 @@ class AppRouter extends _$AppRouter {
         ),
         AutoRoute(
           page: ViewCategoriesRoute.page,
+        ),
+        AutoRoute(
+          page: AddTransactionRoute.page,
         ),
       ];
 }

@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../../app.dart';
 import '../../../core/router/app_router.dart';
 import '../../../core/utils/language_service.dart';
@@ -27,21 +28,27 @@ class SettingsPage extends StatelessWidget {
               leading: const Icon(Icons.category_outlined),
               title: Text(context.l10n.categoryManagement),
               children: [
-                ListTile(
-                  leading: const Icon(Icons.add_circle_outline),
-                  title: Text(context.l10n.addNewCategory),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    context.router.push(AddCategoryRoute());
-                  },
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: ListTile(
+                    leading: const Icon(Icons.add_circle_outline),
+                    title: Text(context.l10n.addNewCategory),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      context.router.push(AddCategoryRoute());
+                    },
+                  ),
                 ),
-                ListTile(
-                  leading: const Icon(Icons.list),
-                  title: Text(context.l10n.viewCategories),
-                  trailing: const Icon(Icons.chevron_right),
-                  onTap: () {
-                    context.router.push(const ViewCategoriesRoute());
-                  },
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: ListTile(
+                    leading: const Icon(Icons.list),
+                    title: Text(context.l10n.viewCategories),
+                    trailing: const Icon(Icons.chevron_right),
+                    onTap: () {
+                      context.router.push(const ViewCategoriesRoute());
+                    },
+                  ),
                 ),
               ],
             ),

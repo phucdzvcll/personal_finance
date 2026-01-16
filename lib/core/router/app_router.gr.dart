@@ -23,6 +23,12 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    AddTransactionRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AddTransactionPage(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -110,6 +116,20 @@ class AddCategoryRouteArgs {
   String toString() {
     return 'AddCategoryRouteArgs{key: $key, category: $category}';
   }
+}
+
+/// generated route for
+/// [AddTransactionPage]
+class AddTransactionRoute extends PageRouteInfo<void> {
+  const AddTransactionRoute({List<PageRouteInfo>? children})
+      : super(
+          AddTransactionRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddTransactionRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for

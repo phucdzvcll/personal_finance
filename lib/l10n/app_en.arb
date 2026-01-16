@@ -232,5 +232,81 @@
   "categoryDeletedSuccessfully": "Category deleted successfully",
   "@categoryDeletedSuccessfully": {
     "description": "Success message after deleting category"
+  },
+  "addTransaction": "Add Transaction",
+  "@addTransaction": {
+    "description": "Add transaction page title"
+  },
+  "amount": "Amount",
+  "@amount": {
+    "description": "Label for amount input field"
+  },
+  "enterAmount": "Enter amount",
+  "@enterAmount": {
+    "description": "Hint text for amount input field"
+  },
+  "pleaseEnterAmount": "Please enter amount",
+  "@pleaseEnterAmount": {
+    "description": "Validation message for empty amount"
+  },
+  "amountMustBeGreaterThanZero": "Amount must be greater than 0",
+  "@amountMustBeGreaterThanZero": {
+    "description": "Validation message for invalid amount"
+  },
+  "transactionType": "Transaction Type",
+  "@transactionType": {
+    "description": "Label for transaction type selection"
+  },
+  "category": "Category",
+  "@category": {
+    "description": "Label for category selection"
+  },
+  "selectCategory": "Select Category",
+  "@selectCategory": {
+    "description": "Hint text for category selection"
+  },
+  "pleaseSelectCategory": "Please select a category",
+  "@pleaseSelectCategory": {
+    "description": "Validation message for empty category"
+  },
+  "transactionDate": "Transaction Date",
+  "@transactionDate": {
+    "description": "Label for transaction date field"
+  },
+  "selectDate": "Select Date",
+  "@selectDate": {
+    "description": "Button text to select date"
+  },
+  "pleaseSelectDate": "Please select a date",
+  "@pleaseSelectDate": {
+    "description": "Validation message for empty date"
+  },
+  "note": "Note",
+  "@note": {
+    "description": "Label for note input field"
+  },
+  "enterNote": "Enter note (optional)",
+  "@enterNote": {
+    "description": "Hint text for note input field"
+  },
+  "createTransaction": "Create Transaction",
+  "@createTransaction": {
+    "description": "Create transaction button text"
+  },
+  "transactionCreatedSuccessfully": "Transaction created successfully",
+  "@transactionCreatedSuccessfully": {
+    "description": "Success message after creating transaction"
+  },
+  "fillTransactionDetails": "Fill in the transaction details",
+  "@fillTransactionDetails": {
+    "description": "Subtitle on add transaction page"
+  },
+  "transactions": "Transactions",
+  "@transactions": {
+    "description": "Transactions page title"
+  },
+  "viewAndManageTransactions": "View and manage your transactions",
+  "@viewAndManageTransactions": {
+    "description": "Subtitle on transactions page"
   }
 }

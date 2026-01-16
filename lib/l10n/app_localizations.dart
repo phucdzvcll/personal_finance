@@ -443,6 +443,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Category deleted successfully'**
   String get categoryDeletedSuccessfully;
+
+  /// Add transaction page title
+  ///
+  /// In en, this message translates to:
+  /// **'Add Transaction'**
+  String get addTransaction;
+
+  /// Label for amount input field
+  ///
+  /// In en, this message translates to:
+  /// **'Amount'**
+  String get amount;
+
+  /// Hint text for amount input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter amount'**
+  String get enterAmount;
+
+  /// Validation message for empty amount
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter amount'**
+  String get pleaseEnterAmount;
+
+  /// Validation message for invalid amount
+  ///
+  /// In en, this message translates to:
+  /// **'Amount must be greater than 0'**
+  String get amountMustBeGreaterThanZero;
+
+  /// Label for transaction type selection
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction Type'**
+  String get transactionType;
+
+  /// Label for category selection
+  ///
+  /// In en, this message translates to:
+  /// **'Category'**
+  String get category;
+
+  /// Hint text for category selection
+  ///
+  /// In en, this message translates to:
+  /// **'Select Category'**
+  String get selectCategory;
+
+  /// Validation message for empty category
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a category'**
+  String get pleaseSelectCategory;
+
+  /// Label for transaction date field
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction Date'**
+  String get transactionDate;
+
+  /// Button text to select date
+  ///
+  /// In en, this message translates to:
+  /// **'Select Date'**
+  String get selectDate;
+
+  /// Validation message for empty date
+  ///
+  /// In en, this message translates to:
+  /// **'Please select a date'**
+  String get pleaseSelectDate;
+
+  /// Label for note input field
+  ///
+  /// In en, this message translates to:
+  /// **'Note'**
+  String get note;
+
+  /// Hint text for note input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter note (optional)'**
+  String get enterNote;
+
+  /// Create transaction button text
+  ///
+  /// In en, this message translates to:
+  /// **'Create Transaction'**
+  String get createTransaction;
+
+  /// Success message after creating transaction
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction created successfully'**
+  String get transactionCreatedSuccessfully;
+
+  /// Subtitle on add transaction page
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in the transaction details'**
+  String get fillTransactionDetails;
+
+  /// Transactions page title
+  ///
+  /// In en, this message translates to:
+  /// **'Transactions'**
+  String get transactions;
+
+  /// Subtitle on transactions page
+  ///
+  /// In en, this message translates to:
+  /// **'View and manage your transactions'**
+  String get viewAndManageTransactions;
 }
 
 class _AppLocalizationsDelegate
