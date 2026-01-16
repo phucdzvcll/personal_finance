@@ -299,6 +299,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Cancel'**
   String get cancel;
+
+  /// Add new category option
+  ///
+  /// In en, this message translates to:
+  /// **'Add New Category'**
+  String get addNewCategory;
+
+  /// View category transactions option
+  ///
+  /// In en, this message translates to:
+  /// **'View Category Transactions'**
+  String get viewCategoryTransactions;
+
+  /// Label for category name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Category Name'**
+  String get categoryName;
+
+  /// Hint text for category name input field
+  ///
+  /// In en, this message translates to:
+  /// **'Enter category name'**
+  String get enterCategoryName;
+
+  /// Validation message for empty category name
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter category name'**
+  String get pleaseEnterCategoryName;
+
+  /// Label for category type selection
+  ///
+  /// In en, this message translates to:
+  /// **'Category Type'**
+  String get categoryType;
+
+  /// Expense category type
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get expense;
+
+  /// Income category type
+  ///
+  /// In en, this message translates to:
+  /// **'Income'**
+  String get income;
+
+  /// Create category button text
+  ///
+  /// In en, this message translates to:
+  /// **'Create Category'**
+  String get createCategory;
+
+  /// Success message after creating category
+  ///
+  /// In en, this message translates to:
+  /// **'Category created successfully'**
+  String get categoryCreatedSuccessfully;
+
+  /// Subtitle on add category page
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in the category details'**
+  String get fillCategoryDetails;
+
+  /// Label for icon selection section
+  ///
+  /// In en, this message translates to:
+  /// **'Select Icon'**
+  String get selectIcon;
+
+  /// Label for color selection section
+  ///
+  /// In en, this message translates to:
+  /// **'Select Color'**
+  String get selectColor;
+
+  /// Select button text
+  ///
+  /// In en, this message translates to:
+  /// **'Select'**
+  String get select;
+
+  /// View categories page title
+  ///
+  /// In en, this message translates to:
+  /// **'View Categories'**
+  String get viewCategories;
+
+  /// Message when no categories are available
+  ///
+  /// In en, this message translates to:
+  /// **'No categories found'**
+  String get noCategoriesFound;
+
+  /// Retry button text
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retry;
+
+  /// Edit category page title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Category'**
+  String get editCategory;
+
+  /// Update category button text
+  ///
+  /// In en, this message translates to:
+  /// **'Update Category'**
+  String get updateCategory;
+
+  /// Success message after updating category
+  ///
+  /// In en, this message translates to:
+  /// **'Category updated successfully'**
+  String get categoryUpdatedSuccessfully;
+
+  /// Delete button text
+  ///
+  /// In en, this message translates to:
+  /// **'Delete'**
+  String get delete;
+
+  /// Delete category dialog title
+  ///
+  /// In en, this message translates to:
+  /// **'Delete Category'**
+  String get deleteCategory;
+
+  /// Delete category confirmation message
+  ///
+  /// In en, this message translates to:
+  /// **'Are you sure you want to delete \"{categoryName}\"?'**
+  String deleteCategoryConfirmation(String categoryName);
+
+  /// Success message after deleting category
+  ///
+  /// In en, this message translates to:
+  /// **'Category deleted successfully'**
+  String get categoryDeletedSuccessfully;
 }
 
 class _AppLocalizationsDelegate

@@ -131,5 +131,106 @@
   "cancel": "Cancel",
   "@cancel": {
     "description": "Cancel button text"
+  },
+  "addNewCategory": "Add New Category",
+  "@addNewCategory": {
+    "description": "Add new category option"
+  },
+  "viewCategoryTransactions": "View Category Transactions",
+  "@viewCategoryTransactions": {
+    "description": "View category transactions option"
+  },
+  "categoryName": "Category Name",
+  "@categoryName": {
+    "description": "Label for category name input field"
+  },
+  "enterCategoryName": "Enter category name",
+  "@enterCategoryName": {
+    "description": "Hint text for category name input field"
+  },
+  "pleaseEnterCategoryName": "Please enter category name",
+  "@pleaseEnterCategoryName": {
+    "description": "Validation message for empty category name"
+  },
+  "categoryType": "Category Type",
+  "@categoryType": {
+    "description": "Label for category type selection"
+  },
+  "expense": "Expense",
+  "@expense": {
+    "description": "Expense category type"
+  },
+  "income": "Income",
+  "@income": {
+    "description": "Income category type"
+  },
+  "createCategory": "Create Category",
+  "@createCategory": {
+    "description": "Create category button text"
+  },
+  "categoryCreatedSuccessfully": "Category created successfully",
+  "@categoryCreatedSuccessfully": {
+    "description": "Success message after creating category"
+  },
+  "fillCategoryDetails": "Fill in the category details",
+  "@fillCategoryDetails": {
+    "description": "Subtitle on add category page"
+  },
+  "selectIcon": "Select Icon",
+  "@selectIcon": {
+    "description": "Label for icon selection section"
+  },
+  "selectColor": "Select Color",
+  "@selectColor": {
+    "description": "Label for color selection section"
+  },
+  "select": "Select",
+  "@select": {
+    "description": "Select button text"
+  },
+  "viewCategories": "View Categories",
+  "@viewCategories": {
+    "description": "View categories page title"
+  },
+  "noCategoriesFound": "No categories found",
+  "@noCategoriesFound": {
+    "description": "Message when no categories are available"
+  },
+  "retry": "Retry",
+  "@retry": {
+    "description": "Retry button text"
+  },
+  "editCategory": "Edit Category",
+  "@editCategory": {
+    "description": "Edit category page title"
+  },
+  "updateCategory": "Update Category",
+  "@updateCategory": {
+    "description": "Update category button text"
+  },
+  "categoryUpdatedSuccessfully": "Category updated successfully",
+  "@categoryUpdatedSuccessfully": {
+    "description": "Success message after updating category"
+  },
+  "delete": "Delete",
+  "@delete": {
+    "description": "Delete button text"
+  },
+  "deleteCategory": "Delete Category",
+  "@deleteCategory": {
+    "description": "Delete category dialog title"
+  },
+  "deleteCategoryConfirmation": "Are you sure you want to delete \"{categoryName}\"?",
+  "@deleteCategoryConfirmation": {
+    "description": "Delete category confirmation message",
+    "placeholders": {
+      "categoryName": {
+        "type": "String"
+      }
+    }
+  },
+  "categoryDeletedSuccessfully": "Category deleted successfully",
+  "@categoryDeletedSuccessfully": {
+    "description": "Success message after deleting category"
   }
 }

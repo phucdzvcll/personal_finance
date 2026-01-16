@@ -23,13 +23,27 @@ class SettingsPage extends StatelessWidget {
         body: ListView(
           children: [
             // Category Management
-            ListTile(
+            ExpansionTile(
               leading: const Icon(Icons.category_outlined),
               title: Text(context.l10n.categoryManagement),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () {
-                // TODO: Navigate to category management page
-              },
+              children: [
+                ListTile(
+                  leading: const Icon(Icons.add_circle_outline),
+                  title: Text(context.l10n.addNewCategory),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    context.router.push(AddCategoryRoute());
+                  },
+                ),
+                ListTile(
+                  leading: const Icon(Icons.list),
+                  title: Text(context.l10n.viewCategories),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    context.router.push(const ViewCategoriesRoute());
+                  },
+                ),
+              ],
             ),
             const Divider(height: 1),
             // Language
@@ -76,8 +90,9 @@ class SettingsPage extends StatelessWidget {
             BlocConsumer<LogoutCubit, LogoutState>(
               listener: (context, state) {
                 if (state is LogoutSuccess) {
-                  // Navigate to login page
-                  context.router.replaceAll([const LoginRoute()]);
+                  // Navigate to splash page which will check token and route to login
+                  // Use root router to navigate from nested route
+                  context.router.root.replaceAll([const SplashRoute()]);
                 } else if (state is LogoutError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(

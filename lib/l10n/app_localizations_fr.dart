@@ -110,4 +110,79 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get cancel => 'Annuler';
+
+  @override
+  String get addNewCategory => 'Ajouter une Nouvelle Catégorie';
+
+  @override
+  String get viewCategoryTransactions => 'Voir les Transactions par Catégorie';
+
+  @override
+  String get categoryName => 'Nom de la Catégorie';
+
+  @override
+  String get enterCategoryName => 'Entrez le nom de la catégorie';
+
+  @override
+  String get pleaseEnterCategoryName =>
+      'Veuillez entrer le nom de la catégorie';
+
+  @override
+  String get categoryType => 'Type de Catégorie';
+
+  @override
+  String get expense => 'Dépense';
+
+  @override
+  String get income => 'Revenu';
+
+  @override
+  String get createCategory => 'Créer la Catégorie';
+
+  @override
+  String get categoryCreatedSuccessfully => 'Catégorie créée avec succès';
+
+  @override
+  String get fillCategoryDetails => 'Remplissez les détails de la catégorie';
+
+  @override
+  String get selectIcon => 'Sélectionner l\'Icône';
+
+  @override
+  String get selectColor => 'Sélectionner la Couleur';
+
+  @override
+  String get select => 'Sélectionner';
+
+  @override
+  String get viewCategories => 'Voir les Catégories';
+
+  @override
+  String get noCategoriesFound => 'Aucune catégorie trouvée';
+
+  @override
+  String get retry => 'Réessayer';
+
+  @override
+  String get editCategory => 'Modifier la Catégorie';
+
+  @override
+  String get updateCategory => 'Mettre à jour la Catégorie';
+
+  @override
+  String get categoryUpdatedSuccessfully => 'Catégorie mise à jour avec succès';
+
+  @override
+  String get delete => 'Supprimer';
+
+  @override
+  String get deleteCategory => 'Supprimer la Catégorie';
+
+  @override
+  String deleteCategoryConfirmation(String categoryName) {
+    return 'Êtes-vous sûr de vouloir supprimer \"$categoryName\"?';
+  }
+
+  @override
+  String get categoryDeletedSuccessfully => 'Catégorie supprimée avec succès';
 }

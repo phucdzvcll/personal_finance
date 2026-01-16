@@ -108,4 +108,78 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get cancel => 'Hủy';
+
+  @override
+  String get addNewCategory => 'Thêm Danh Mục Mới';
+
+  @override
+  String get viewCategoryTransactions => 'Xem Giao Dịch Theo Danh Mục';
+
+  @override
+  String get categoryName => 'Tên Danh Mục';
+
+  @override
+  String get enterCategoryName => 'Nhập tên danh mục';
+
+  @override
+  String get pleaseEnterCategoryName => 'Vui lòng nhập tên danh mục';
+
+  @override
+  String get categoryType => 'Loại Danh Mục';
+
+  @override
+  String get expense => 'Chi Tiêu';
+
+  @override
+  String get income => 'Thu Nhập';
+
+  @override
+  String get createCategory => 'Tạo Danh Mục';
+
+  @override
+  String get categoryCreatedSuccessfully => 'Tạo danh mục thành công';
+
+  @override
+  String get fillCategoryDetails => 'Điền thông tin chi tiết danh mục';
+
+  @override
+  String get selectIcon => 'Chọn Biểu Tượng';
+
+  @override
+  String get selectColor => 'Chọn Màu';
+
+  @override
+  String get select => 'Chọn';
+
+  @override
+  String get viewCategories => 'Xem Danh Mục';
+
+  @override
+  String get noCategoriesFound => 'Không tìm thấy danh mục nào';
+
+  @override
+  String get retry => 'Thử Lại';
+
+  @override
+  String get editCategory => 'Chỉnh Sửa Danh Mục';
+
+  @override
+  String get updateCategory => 'Cập Nhật Danh Mục';
+
+  @override
+  String get categoryUpdatedSuccessfully => 'Cập nhật danh mục thành công';
+
+  @override
+  String get delete => 'Xóa';
+
+  @override
+  String get deleteCategory => 'Xóa Danh Mục';
+
+  @override
+  String deleteCategoryConfirmation(String categoryName) {
+    return 'Bạn có chắc chắn muốn xóa \"$categoryName\"?';
+  }
+
+  @override
+  String get categoryDeletedSuccessfully => 'Xóa danh mục thành công';
 }

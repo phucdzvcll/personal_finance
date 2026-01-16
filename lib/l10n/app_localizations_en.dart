@@ -108,4 +108,78 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get cancel => 'Cancel';
+
+  @override
+  String get addNewCategory => 'Add New Category';
+
+  @override
+  String get viewCategoryTransactions => 'View Category Transactions';
+
+  @override
+  String get categoryName => 'Category Name';
+
+  @override
+  String get enterCategoryName => 'Enter category name';
+
+  @override
+  String get pleaseEnterCategoryName => 'Please enter category name';
+
+  @override
+  String get categoryType => 'Category Type';
+
+  @override
+  String get expense => 'Expense';
+
+  @override
+  String get income => 'Income';
+
+  @override
+  String get createCategory => 'Create Category';
+
+  @override
+  String get categoryCreatedSuccessfully => 'Category created successfully';
+
+  @override
+  String get fillCategoryDetails => 'Fill in the category details';
+
+  @override
+  String get selectIcon => 'Select Icon';
+
+  @override
+  String get selectColor => 'Select Color';
+
+  @override
+  String get select => 'Select';
+
+  @override
+  String get viewCategories => 'View Categories';
+
+  @override
+  String get noCategoriesFound => 'No categories found';
+
+  @override
+  String get retry => 'Retry';
+
+  @override
+  String get editCategory => 'Edit Category';
+
+  @override
+  String get updateCategory => 'Update Category';
+
+  @override
+  String get categoryUpdatedSuccessfully => 'Category updated successfully';
+
+  @override
+  String get delete => 'Delete';
+
+  @override
+  String get deleteCategory => 'Delete Category';
+
+  @override
+  String deleteCategoryConfirmation(String categoryName) {
+    return 'Are you sure you want to delete \"$categoryName\"?';
+  }
+
+  @override
+  String get categoryDeletedSuccessfully => 'Category deleted successfully';
 }

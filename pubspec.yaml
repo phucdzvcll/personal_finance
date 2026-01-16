@@ -67,6 +67,15 @@ dependencies:
   
   # Navigation
   auto_route: ^8.0.0
+  
+  # Icons
+  font_awesome_flutter: ^10.7.0
+  
+  # Color Picker
+  flutter_colorpicker: ^1.0.3
+  
+  # Slidable
+  flutter_slidable: ^4.0.3
 
 dev_dependencies:
   flutter_test:
