@@ -1,4 +1,5 @@
 import 'base_entity.dart';
+import 'category.dart';
 import 'transaction_type.dart';
 
 class Transaction extends BaseEntity {
@@ -8,6 +9,7 @@ class Transaction extends BaseEntity {
   final int categoryId;
   final String transactionDate;
   final String? note;
+  final Category? category;
   final DateTime createdAt;
   final DateTime updatedAt;
 
@@ -18,6 +20,7 @@ class Transaction extends BaseEntity {
     required this.categoryId,
     required this.transactionDate,
     this.note,
+    this.category,
     required this.createdAt,
     required this.updatedAt,
   });
@@ -30,6 +33,7 @@ class Transaction extends BaseEntity {
         categoryId,
         transactionDate,
         note,
+        category,
         createdAt,
         updatedAt,
       ];

@@ -1,6 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../domain/entities/transaction.dart';
 import '../../domain/entities/transaction_type.dart';
+import 'category_model.dart';
 
 part 'transaction_model.freezed.dart';
 part 'transaction_model.g.dart';
@@ -16,6 +17,7 @@ class TransactionModel with _$TransactionModel {
     required int categoryId,
     required String transactionDate,
     String? note,
+    CategoryModel? category,
     required String createdAt,
     required String updatedAt,
   }) = _TransactionModel;
@@ -31,6 +33,7 @@ class TransactionModel with _$TransactionModel {
       categoryId: categoryId,
       transactionDate: transactionDate,
       note: note,
+      category: category?.toEntity(),
       createdAt: DateTime.parse(createdAt),
       updatedAt: DateTime.parse(updatedAt),
     );

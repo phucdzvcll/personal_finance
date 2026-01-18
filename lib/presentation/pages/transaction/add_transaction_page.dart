@@ -5,15 +5,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import '../../../app.dart';
 import '../../../domain/entities/category.dart';
+import '../../../domain/entities/transaction.dart';
 import '../../../domain/entities/transaction_type.dart';
-import '../../../domain/usecases/get_categories_usecase.dart';
 import '../../../di/injection.dart';
 import '../../cubit/transaction/transaction_form_cubit.dart';
 import '../../widgets/common/loading_widget.dart';
 
 @RoutePage()
 class AddTransactionPage extends StatefulWidget {
-  const AddTransactionPage({super.key});
+  final Transaction? transaction;
+
+  const AddTransactionPage({super.key, this.transaction});
 
   @override
   State<AddTransactionPage> createState() => _AddTransactionPageState();
@@ -26,16 +28,28 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   late TransactionType _selectedType;
   Category? _selectedCategory;
   DateTime? _selectedDate;
-  List<Category> _categories = [];
-  bool _isLoadingCategories = true;
+  bool _categoryMatched = false;
+  bool get _isEditMode => widget.transaction != null;
 
   @override
   void initState() {
     super.initState();
-    _amountController = TextEditingController();
-    _noteController = TextEditingController();
-    _selectedType = TransactionType.expense;
-    _loadCategories();
+    if (_isEditMode) {
+      final transaction = widget.transaction!;
+      _amountController = TextEditingController(text: transaction.amount.toString());
+      _noteController = TextEditingController(text: transaction.note ?? '');
+      _selectedType = transaction.type;
+      _selectedCategory = transaction.category;
+      try {
+        _selectedDate = DateFormat('yyyy-MM-dd').parse(transaction.transactionDate);
+      } catch (e) {
+        _selectedDate = null;
+      }
+    } else {
+      _amountController = TextEditingController();
+      _noteController = TextEditingController();
+      _selectedType = TransactionType.expense;
+    }
   }
 
   @override
@@ -43,29 +57,6 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
     _amountController.dispose();
     _noteController.dispose();
     super.dispose();
-  }
-
-  Future<void> _loadCategories() async {
-    setState(() {
-      _isLoadingCategories = true;
-    });
-
-    final getCategoriesUseCase = getIt<GetCategoriesUseCase>();
-    final result = await getCategoriesUseCase();
-
-    if (mounted) {
-      setState(() {
-        _isLoadingCategories = false;
-        result.fold(
-          (failure) {
-            // Handle error - could show snackbar
-          },
-          (categories) {
-            _categories = categories;
-          },
-        );
-      });
-    }
   }
 
   Future<void> _selectDate(BuildContext context) async {
@@ -82,7 +73,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
     }
   }
 
-  void _handleCreateTransaction(BuildContext context) {
+  void _handleSaveTransaction(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       if (_selectedCategory == null) {
         ScaffoldMessenger.of(context).showSnackBar(
@@ -116,25 +107,38 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       }
 
       final dateFormat = DateFormat('yyyy-MM-dd');
-      context.read<TransactionFormCubit>().createTransaction(
-            amount: amount,
-            type: _selectedType,
-            categoryId: _selectedCategory!.id,
-            transactionDate: dateFormat.format(_selectedDate!),
-            note: _noteController.text.trim().isEmpty
-                ? null
-                : _noteController.text.trim(),
-          );
+      if (_isEditMode) {
+        context.read<TransactionFormCubit>().updateTransaction(
+              id: widget.transaction!.id,
+              amount: amount,
+              type: _selectedType,
+              categoryId: _selectedCategory!.id,
+              transactionDate: dateFormat.format(_selectedDate!),
+              note: _noteController.text.trim().isEmpty
+                  ? null
+                  : _noteController.text.trim(),
+            );
+      } else {
+        context.read<TransactionFormCubit>().createTransaction(
+              amount: amount,
+              type: _selectedType,
+              categoryId: _selectedCategory!.id,
+              transactionDate: dateFormat.format(_selectedDate!),
+              note: _noteController.text.trim().isEmpty
+                  ? null
+                  : _noteController.text.trim(),
+            );
+      }
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<TransactionFormCubit>(),
+      create: (context) => getIt<TransactionFormCubit>()..loadCategories(),
       child: Scaffold(
         appBar: AppBar(
-          title: Text(context.l10n.addTransaction),
+          title: Text(_isEditMode ? context.l10n.editTransaction : context.l10n.addTransaction),
         ),
         body: SafeArea(
           child: SingleChildScrollView(
@@ -144,7 +148,11 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                 if (state is TransactionFormSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text(context.l10n.transactionCreatedSuccessfully),
+                      content: Text(
+                        _isEditMode
+                            ? context.l10n.transactionUpdatedSuccessfully
+                            : context.l10n.transactionCreatedSuccessfully,
+                      ),
                       backgroundColor: Colors.green,
                     ),
                   );
@@ -156,6 +164,18 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                       backgroundColor: Theme.of(context).colorScheme.error,
                     ),
                   );
+                } else if (state is TransactionFormCategoriesLoaded) {
+                  // Match selected category with loaded categories in edit mode
+                  if (_isEditMode && widget.transaction?.category != null && !_categoryMatched) {
+                    final matchedCategory = state.categories.firstWhere(
+                      (cat) => cat.id == widget.transaction!.category!.id,
+                      orElse: () => widget.transaction!.category!,
+                    );
+                    setState(() {
+                      _selectedCategory = matchedCategory;
+                      _categoryMatched = true;
+                    });
+                  }
                 }
               },
               child: Builder(
@@ -163,8 +183,46 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   final formState = context.watch<TransactionFormCubit>().state;
                   final isLoading = formState is TransactionFormLoading;
 
-                  if (_isLoadingCategories) {
+                  // Handle category loading states
+                  if (formState is TransactionFormLoadingCategories) {
                     return const LoadingWidget();
+                  }
+
+                  if (formState is TransactionFormCategoriesError) {
+                    return Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.error_outline,
+                            size: 64.sp,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
+                          SizedBox(height: 16.h),
+                          Text(
+                            formState.message,
+                            style: Theme.of(context).textTheme.bodyLarge,
+                            textAlign: TextAlign.center,
+                          ),
+                          SizedBox(height: 24.h),
+                          ElevatedButton(
+                            onPressed: () {
+                              context.read<TransactionFormCubit>().loadCategories();
+                            },
+                            child: Text(context.l10n.retry),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+
+                  // Get categories from state
+                  List<Category> categories = [];
+                  if (formState is TransactionFormCategoriesLoaded) {
+                    categories = formState.categories;
+                  } else if (formState is TransactionFormInitial) {
+                    // Initial state - categories not loaded yet
+                    // This should not happen as we call loadCategories immediately
                   }
 
                   return Form(
@@ -242,7 +300,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                               borderRadius: BorderRadius.circular(12.r),
                             ),
                           ),
-                          items: _categories
+                          items: categories
                               .where((category) => category.type.value == _selectedType.value)
                               .map((category) {
                             return DropdownMenuItem<Category>(
@@ -306,7 +364,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                         ElevatedButton(
                           onPressed: isLoading
                               ? null
-                              : () => _handleCreateTransaction(context),
+                              : () => _handleSaveTransaction(context),
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.symmetric(vertical: 16.h),
                             shape: RoundedRectangleBorder(
@@ -325,7 +383,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                                   ),
                                 )
                               : Text(
-                                  context.l10n.createTransaction,
+                                  _isEditMode
+                                      ? context.l10n.updateTransaction
+                                      : context.l10n.createTransaction,
                                   style: TextStyle(fontSize: 16.sp),
                                 ),
                         ),

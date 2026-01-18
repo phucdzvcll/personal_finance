@@ -10,6 +10,9 @@
 part of 'app_router.dart';
 
 abstract class _$AppRouter extends RootStackRouter {
+  // ignore: unused_element
+  _$AppRouter({super.navigatorKey});
+
   @override
   final Map<String, PageFactory> pagesMap = {
     AddCategoryRoute.name: (routeData) {
@@ -24,9 +27,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     AddTransactionRoute.name: (routeData) {
+      final args = routeData.argsAs<AddTransactionRouteArgs>(
+          orElse: () => const AddTransactionRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AddTransactionPage(),
+        child: AddTransactionPage(
+          key: args.key,
+          transaction: args.transaction,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -120,16 +128,40 @@ class AddCategoryRouteArgs {
 
 /// generated route for
 /// [AddTransactionPage]
-class AddTransactionRoute extends PageRouteInfo<void> {
-  const AddTransactionRoute({List<PageRouteInfo>? children})
-      : super(
+class AddTransactionRoute extends PageRouteInfo<AddTransactionRouteArgs> {
+  AddTransactionRoute({
+    Key? key,
+    Transaction? transaction,
+    List<PageRouteInfo>? children,
+  }) : super(
           AddTransactionRoute.name,
+          args: AddTransactionRouteArgs(
+            key: key,
+            transaction: transaction,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AddTransactionRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<AddTransactionRouteArgs> page =
+      PageInfo<AddTransactionRouteArgs>(name);
+}
+
+class AddTransactionRouteArgs {
+  const AddTransactionRouteArgs({
+    this.key,
+    this.transaction,
+  });
+
+  final Key? key;
+
+  final Transaction? transaction;
+
+  @override
+  String toString() {
+    return 'AddTransactionRouteArgs{key: $key, transaction: $transaction}';
+  }
 }
 
 /// generated route for

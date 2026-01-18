@@ -9,6 +9,26 @@ abstract class TransactionFormState extends Equatable {
 
 class TransactionFormInitial extends TransactionFormState {}
 
+class TransactionFormLoadingCategories extends TransactionFormState {}
+
+class TransactionFormCategoriesLoaded extends TransactionFormState {
+  final List<Category> categories;
+
+  const TransactionFormCategoriesLoaded(this.categories);
+
+  @override
+  List<Object?> get props => [categories];
+}
+
+class TransactionFormCategoriesError extends TransactionFormState {
+  final String message;
+
+  const TransactionFormCategoriesError(this.message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
 class TransactionFormLoading extends TransactionFormState {}
 
 class TransactionFormSuccess extends TransactionFormState {

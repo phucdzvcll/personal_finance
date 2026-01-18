@@ -245,4 +245,21 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get viewAndManageTransactions => 'Ver y gestionar tus transacciones';
+
+  @override
+  String get noTransactionsFound => 'No se encontraron transacciones';
+
+  @override
+  String get editTransaction => 'Editar Transacción';
+
+  @override
+  String get updateTransaction => 'Actualizar Transacción';
+
+  @override
+  String get transactionUpdatedSuccessfully =>
+      'Transacción actualizada exitosamente';
+
+  @override
+  String get transactionDeletedSuccessfully =>
+      'Transacción eliminada exitosamente';
 }

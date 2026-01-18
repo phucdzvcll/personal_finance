@@ -239,4 +239,19 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get viewAndManageTransactions => 'Xem và quản lý giao dịch của bạn';
+
+  @override
+  String get noTransactionsFound => 'Không tìm thấy giao dịch nào';
+
+  @override
+  String get editTransaction => 'Chỉnh Sửa Giao Dịch';
+
+  @override
+  String get updateTransaction => 'Cập Nhật Giao Dịch';
+
+  @override
+  String get transactionUpdatedSuccessfully => 'Cập nhật giao dịch thành công';
+
+  @override
+  String get transactionDeletedSuccessfully => 'Xóa giao dịch thành công';
 }

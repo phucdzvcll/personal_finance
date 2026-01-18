@@ -13,4 +13,20 @@ abstract class TransactionRepository extends BaseRepository {
     required String transactionDate,
     String? note,
   });
+
+  /// Get all transactions
+  Future<Either<Failure, List<Transaction>>> getTransactions();
+
+  /// Update transaction
+  Future<Either<Failure, Transaction>> updateTransaction({
+    required int id,
+    required double amount,
+    required TransactionType type,
+    required int categoryId,
+    required String transactionDate,
+    String? note,
+  });
+
+  /// Delete transaction
+  Future<Either<Failure, void>> deleteTransaction(int id);
 }

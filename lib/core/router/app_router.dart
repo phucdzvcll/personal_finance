@@ -1,10 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_finance/domain/entities/category.dart';
+import 'package:personal_finance/domain/entities/transaction.dart';
 import '../../presentation/pages/auth/login_page.dart';
 import '../../presentation/pages/auth/register_page.dart';
 import '../../presentation/pages/home/home_page.dart';
-import '../../presentation/pages/transactions/transactions_page.dart';
+import '../../presentation/pages/transaction/transactions_page.dart';
 import '../../presentation/pages/settings/settings_page.dart';
 import '../../presentation/pages/main_tab/main_tab_page.dart';
 import '../../presentation/pages/category/add_category_page.dart';

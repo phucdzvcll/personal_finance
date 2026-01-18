@@ -75,5 +75,10 @@
   "transactionCreatedSuccessfully": "Tạo giao dịch thành công",
   "fillTransactionDetails": "Điền thông tin chi tiết giao dịch",
   "transactions": "Giao Dịch",
-  "viewAndManageTransactions": "Xem và quản lý giao dịch của bạn"
+  "viewAndManageTransactions": "Xem và quản lý giao dịch của bạn",
+  "noTransactionsFound": "Không tìm thấy giao dịch nào",
+  "editTransaction": "Chỉnh Sửa Giao Dịch",
+  "updateTransaction": "Cập Nhật Giao Dịch",
+  "transactionUpdatedSuccessfully": "Cập nhật giao dịch thành công",
+  "transactionDeletedSuccessfully": "Xóa giao dịch thành công"
 }

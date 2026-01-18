@@ -557,6 +557,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'View and manage your transactions'**
   String get viewAndManageTransactions;
+
+  /// Message when no transactions are available
+  ///
+  /// In en, this message translates to:
+  /// **'No transactions found'**
+  String get noTransactionsFound;
+
+  /// Edit transaction page title
+  ///
+  /// In en, this message translates to:
+  /// **'Edit Transaction'**
+  String get editTransaction;
+
+  /// Update transaction button text
+  ///
+  /// In en, this message translates to:
+  /// **'Update Transaction'**
+  String get updateTransaction;
+
+  /// Success message after updating transaction
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction updated successfully'**
+  String get transactionUpdatedSuccessfully;
+
+  /// Success message after deleting transaction
+  ///
+  /// In en, this message translates to:
+  /// **'Transaction deleted successfully'**
+  String get transactionDeletedSuccessfully;
 }
 
 class _AppLocalizationsDelegate

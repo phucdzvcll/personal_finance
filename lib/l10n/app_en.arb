@@ -308,5 +308,25 @@
   "viewAndManageTransactions": "View and manage your transactions",
   "@viewAndManageTransactions": {
     "description": "Subtitle on transactions page"
+  },
+  "noTransactionsFound": "No transactions found",
+  "@noTransactionsFound": {
+    "description": "Message when no transactions are available"
+  },
+  "editTransaction": "Edit Transaction",
+  "@editTransaction": {
+    "description": "Edit transaction page title"
+  },
+  "updateTransaction": "Update Transaction",
+  "@updateTransaction": {
+    "description": "Update transaction button text"
+  },
+  "transactionUpdatedSuccessfully": "Transaction updated successfully",
+  "@transactionUpdatedSuccessfully": {
+    "description": "Success message after updating transaction"
+  },
+  "transactionDeletedSuccessfully": "Transaction deleted successfully",
+  "@transactionDeletedSuccessfully": {
+    "description": "Success message after deleting transaction"
   }
 }

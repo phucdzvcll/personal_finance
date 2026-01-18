@@ -75,5 +75,10 @@
   "transactionCreatedSuccessfully": "Transaction créée avec succès",
   "fillTransactionDetails": "Remplissez les détails de la transaction",
   "transactions": "Transactions",
-  "viewAndManageTransactions": "Voir et gérer vos transactions"
+  "viewAndManageTransactions": "Voir et gérer vos transactions",
+  "noTransactionsFound": "Aucune transaction trouvée",
+  "editTransaction": "Modifier la Transaction",
+  "updateTransaction": "Mettre à jour la Transaction",
+  "transactionUpdatedSuccessfully": "Transaction mise à jour avec succès",
+  "transactionDeletedSuccessfully": "Transaction supprimée avec succès"
 }
