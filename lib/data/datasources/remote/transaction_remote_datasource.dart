@@ -1,7 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:intl/intl.dart';
 import '../../../core/network/api_client.dart';
 import '../../../core/error/exceptions.dart';
+import '../../../domain/entities/transaction_type.dart';
 import '../../models/transaction_model.dart';
 import '../../models/create_transaction_request.dart';
 import '../../models/update_transaction_request.dart';
@@ -9,7 +11,12 @@ import 'remote_datasource.dart';
 
 abstract class TransactionRemoteDataSource extends RemoteDataSource {
   Future<TransactionModel> createTransaction(CreateTransactionRequest request);
-  Future<List<TransactionModel>> getTransactions();
+  Future<List<TransactionModel>> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+    TransactionType? type,
+    int? categoryId,
+  });
   Future<TransactionModel> updateTransaction(int id, UpdateTransactionRequest request);
   Future<void> deleteTransaction(int id);
 }
@@ -45,9 +52,20 @@ class TransactionRemoteDataSourceImpl implements TransactionRemoteDataSource {
   }
 
   @override
-  Future<List<TransactionModel>> getTransactions() async {
+  Future<List<TransactionModel>> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+    TransactionType? type,
+    int? categoryId,
+  }) async {
     try {
-      return await apiClient.getTransactions();
+      final dateFormat = DateFormat('yyyy-MM-dd');
+      return await apiClient.getTransactions(
+        startDate: startDate != null ? dateFormat.format(startDate) : null,
+        endDate: endDate != null ? dateFormat.format(endDate) : null,
+        type: type?.value,
+        categoryId: categoryId,
+      );
     } on DioException catch (e) {
       if (e.response != null) {
         final errorMessage = e.response?.data is Map

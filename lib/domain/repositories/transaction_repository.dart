@@ -15,7 +15,12 @@ abstract class TransactionRepository extends BaseRepository {
   });
 
   /// Get all transactions
-  Future<Either<Failure, List<Transaction>>> getTransactions();
+  Future<Either<Failure, List<Transaction>>> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+    TransactionType? type,
+    int? categoryId,
+  });
 
   /// Update transaction
   Future<Either<Failure, Transaction>> updateTransaction({

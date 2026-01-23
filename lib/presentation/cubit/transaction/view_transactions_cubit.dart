@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 import '../../../domain/entities/transaction.dart';
+import '../../../domain/entities/transaction_type.dart';
 import '../../../domain/usecases/delete_transaction_usecase.dart';
 import '../../../domain/usecases/get_transactions_usecase.dart';
 import '../base_cubit.dart';
@@ -17,10 +18,37 @@ class ViewTransactionsCubit extends BaseCubit<ViewTransactionsState> {
     this.deleteTransactionUseCase,
   ) : super(ViewTransactionsInitial());
 
-  Future<void> getTransactions() async {
+  DateTime? _startDate;
+  DateTime? _endDate;
+  TransactionType? _type;
+  int? _categoryId;
+
+  DateTime? get startDate => _startDate;
+  DateTime? get endDate => _endDate;
+  TransactionType? get type => _type;
+  int? get categoryId => _categoryId;
+
+  Future<void> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+    TransactionType? type,
+    int? categoryId,
+  }) async {
+    _startDate = startDate;
+    _endDate = endDate;
+    _type = type;
+    _categoryId = categoryId;
+    
     emit(ViewTransactionsLoading());
 
-    final result = await getTransactionsUseCase();
+    final result = await getTransactionsUseCase(
+      GetTransactionsParams(
+        startDate: startDate,
+        endDate: endDate,
+        type: type,
+        categoryId: categoryId,
+      ),
+    );
 
     result.fold(
       (failure) => emit(ViewTransactionsError(failure.message)),
@@ -49,7 +77,12 @@ class ViewTransactionsCubit extends BaseCubit<ViewTransactionsState> {
         final updatedTransactions = currentTransactions.where((t) => t.id != id).toList();
         emit(ViewTransactionsDeleteSuccess(updatedTransactions, id));
         // Automatically refresh to get latest data
-        getTransactions();
+        getTransactions(
+          startDate: _startDate,
+          endDate: _endDate,
+          type: _type,
+          categoryId: _categoryId,
+        );
       },
     );
   }

@@ -300,4 +300,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chart => 'Graphique';
+
+  @override
+  String get selectDateRange => 'Sélectionner une plage de dates';
+
+  @override
+  String get startDate => 'Date de début';
+
+  @override
+  String get endDate => 'Date de fin';
+
+  @override
+  String get notSelected => 'Non sélectionné';
+
+  @override
+  String get clear => 'Effacer';
+
+  @override
+  String get apply => 'Appliquer';
+
+  @override
+  String get all => 'Tous';
 }

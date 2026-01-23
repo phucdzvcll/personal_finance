@@ -293,4 +293,25 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get chart => 'Biểu đồ';
+
+  @override
+  String get selectDateRange => 'Chọn khoảng thời gian';
+
+  @override
+  String get startDate => 'Ngày bắt đầu';
+
+  @override
+  String get endDate => 'Ngày kết thúc';
+
+  @override
+  String get notSelected => 'Chưa chọn';
+
+  @override
+  String get clear => 'Xóa';
+
+  @override
+  String get apply => 'Áp dụng';
+
+  @override
+  String get all => 'Tất cả';
 }

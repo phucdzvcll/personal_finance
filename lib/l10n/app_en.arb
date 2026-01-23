@@ -380,5 +380,33 @@
   "chart": "Chart",
   "@chart": {
     "description": "Chart view mode label"
+  },
+  "selectDateRange": "Select Date Range",
+  "@selectDateRange": {
+    "description": "Title for date range picker dialog"
+  },
+  "startDate": "Start Date",
+  "@startDate": {
+    "description": "Label for start date"
+  },
+  "endDate": "End Date",
+  "@endDate": {
+    "description": "Label for end date"
+  },
+  "notSelected": "Not selected",
+  "@notSelected": {
+    "description": "Text shown when date is not selected"
+  },
+  "clear": "Clear",
+  "@clear": {
+    "description": "Button to clear selection"
+  },
+  "apply": "Apply",
+  "@apply": {
+    "description": "Button to apply filter"
+  },
+  "all": "All",
+  "@all": {
+    "description": "Label for all option in filter"
   }
 }

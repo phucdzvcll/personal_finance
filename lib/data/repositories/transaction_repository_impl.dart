@@ -45,9 +45,19 @@ class TransactionRepositoryImpl extends BaseRepositoryImpl
   }
 
   @override
-  Future<Either<Failure, List<Transaction>>> getTransactions() async {
+  Future<Either<Failure, List<Transaction>>> getTransactions({
+    DateTime? startDate,
+    DateTime? endDate,
+    TransactionType? type,
+    int? categoryId,
+  }) async {
     try {
-      final transactionModels = await remoteDataSource.getTransactions();
+      final transactionModels = await remoteDataSource.getTransactions(
+        startDate: startDate,
+        endDate: endDate,
+        type: type,
+        categoryId: categoryId,
+      );
       final transactions = transactionModels.map((model) => model.toEntity()).toList();
       return Right(transactions);
     } on ServerException catch (e) {

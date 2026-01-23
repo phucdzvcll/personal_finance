@@ -93,5 +93,12 @@
   "year": "Año",
   "month": "Mes",
   "list": "Lista",
-  "chart": "Gráfico"
+  "chart": "Gráfico",
+  "selectDateRange": "Seleccionar rango de fechas",
+  "startDate": "Fecha de inicio",
+  "endDate": "Fecha de fin",
+  "notSelected": "No seleccionado",
+  "clear": "Limpiar",
+  "apply": "Aplicar",
+  "all": "Todos"
 }

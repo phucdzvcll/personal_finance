@@ -93,5 +93,12 @@
   "year": "Năm",
   "month": "Tháng",
   "list": "Danh sách",
-  "chart": "Biểu đồ"
+  "chart": "Biểu đồ",
+  "selectDateRange": "Chọn khoảng thời gian",
+  "startDate": "Ngày bắt đầu",
+  "endDate": "Ngày kết thúc",
+  "notSelected": "Chưa chọn",
+  "clear": "Xóa",
+  "apply": "Áp dụng",
+  "all": "Tất cả"
 }

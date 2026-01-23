@@ -59,7 +59,12 @@ abstract class ApiClient {
 
   /// Get all transactions endpoint
   @GET('/v1/transactions')
-  Future<List<TransactionModel>> getTransactions();
+  Future<List<TransactionModel>> getTransactions({
+    @Query('startDate') String? startDate,
+    @Query('endDate') String? endDate,
+    @Query('type') String? type,
+    @Query('categoryId') int? categoryId,
+  });
 
   /// Update transaction endpoint
   @PATCH('/v1/transactions/{id}')

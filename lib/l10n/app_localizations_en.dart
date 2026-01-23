@@ -296,4 +296,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chart => 'Chart';
+
+  @override
+  String get selectDateRange => 'Select Date Range';
+
+  @override
+  String get startDate => 'Start Date';
+
+  @override
+  String get endDate => 'End Date';
+
+  @override
+  String get notSelected => 'Not selected';
+
+  @override
+  String get clear => 'Clear';
+
+  @override
+  String get apply => 'Apply';
+
+  @override
+  String get all => 'All';
 }
