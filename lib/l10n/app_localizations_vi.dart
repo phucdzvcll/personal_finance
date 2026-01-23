@@ -254,4 +254,43 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get transactionDeletedSuccessfully => 'Xóa giao dịch thành công';
+
+  @override
+  String get monthlySummary => 'Tóm Tắt Tháng';
+
+  @override
+  String get totalIncome => 'Tổng Thu Nhập';
+
+  @override
+  String get totalExpense => 'Tổng Chi Tiêu';
+
+  @override
+  String get balance => 'Số Dư';
+
+  @override
+  String get expenseByCategory => 'Chi Tiêu Theo Danh Mục';
+
+  @override
+  String get noExpenseData => 'Không có dữ liệu chi tiêu';
+
+  @override
+  String get loading => 'Đang tải...';
+
+  @override
+  String get filter => 'Lọc';
+
+  @override
+  String get selectMonthYear => 'Chọn Tháng và Năm';
+
+  @override
+  String get year => 'Năm';
+
+  @override
+  String get month => 'Tháng';
+
+  @override
+  String get list => 'Danh sách';
+
+  @override
+  String get chart => 'Biểu đồ';
 }

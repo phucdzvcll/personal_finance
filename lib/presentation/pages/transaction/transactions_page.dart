@@ -6,6 +6,7 @@ import '../../../app.dart';
 import '../../../core/router/app_router.dart';
 import '../../../di/injection.dart';
 import '../../../domain/entities/transaction.dart';
+import '../../cubit/home/home_cubit.dart';
 import '../../cubit/transaction/view_transactions_cubit.dart';
 import '../../widgets/common/empty_widget.dart';
 import '../../widgets/common/loading_widget.dart';
@@ -14,6 +15,16 @@ import '../../widgets/transaction/transaction_item.dart';
 @RoutePage()
 class TransactionsPage extends StatelessWidget {
   const TransactionsPage({super.key});
+
+  void _refreshHomeSummary() {
+    try {
+      final homeCubit = getIt<HomeCubit>();
+      final now = DateTime.now();
+      homeCubit.getMonthlySummary(now.year, now.month);
+    } catch (e) {
+      // Cubit might not be initialized yet, ignore
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +38,14 @@ class TransactionsPage extends StatelessWidget {
         floatingActionButton: Builder(
           builder: (context) => FloatingActionButton(
             onPressed: () async {
-              await context.router.push(AddTransactionRoute());
+              final result = await context.router.push(AddTransactionRoute());
               // Refresh transactions after returning from create
               if (context.mounted) {
                 context.read<ViewTransactionsCubit>().getTransactions();
+                // If transaction was created/updated, refresh home summary
+                if (result == true) {
+                  _refreshHomeSummary();
+                }
               }
             },
             tooltip: context.l10n.addTransaction,
@@ -119,15 +134,21 @@ class TransactionsPage extends StatelessWidget {
                     return TransactionItem(
                       transaction: transaction,
                       onTap: () async {
-                        await context.router.push(
+                        final result = await context.router.push(
                             AddTransactionRoute(transaction: transaction));
                         // Refresh transactions after returning from edit
                         if (context.mounted) {
                           context.read<ViewTransactionsCubit>().getTransactions();
+                          // If transaction was updated, refresh home summary
+                          if (result == true) {
+                            _refreshHomeSummary();
+                          }
                         }
                       },
                       onDelete: () {
                         context.read<ViewTransactionsCubit>().deleteTransaction(transaction.id);
+                        // Refresh home summary after delete
+                        _refreshHomeSummary();
                       },
                     );
                   },

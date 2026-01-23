@@ -56,9 +56,15 @@ class _RegisterPageState extends State<RegisterPage> {
           title: Text(context.l10n.createAccount),
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(24.w),
-            child: Form(
+          child: GestureDetector(
+            onTap: () {
+              // Unfocus when tapping outside input fields
+              FocusScope.of(context).unfocus();
+            },
+            behavior: HitTestBehavior.opaque,
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(24.w),
+              child: Form(
               key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -227,6 +233,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                 ],
               ),
+            ),
             ),
           ),
         ),

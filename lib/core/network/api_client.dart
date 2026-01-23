@@ -9,6 +9,7 @@ import '../../data/models/create_category_request.dart';
 import '../../data/models/update_category_request.dart';
 import '../../data/models/transaction_model.dart';
 import '../../data/models/create_transaction_request.dart';
+import '../../data/models/summary_model.dart';
 import '../../data/models/update_transaction_request.dart';
 
 part 'api_client.g.dart';
@@ -70,4 +71,11 @@ abstract class ApiClient {
   /// Delete transaction endpoint
   @DELETE('/v1/transactions/{id}')
   Future<void> deleteTransaction(@Path('id') int id);
+
+  /// Get monthly summary endpoint
+  @GET('/v1/summary/monthly')
+  Future<SummaryModel> getMonthlySummary(
+    @Query('year') int year,
+    @Query('month') int month,
+  );
 }

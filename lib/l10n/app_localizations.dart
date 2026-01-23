@@ -587,6 +587,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Transaction deleted successfully'**
   String get transactionDeletedSuccessfully;
+
+  /// Monthly summary title
+  ///
+  /// In en, this message translates to:
+  /// **'Monthly Summary'**
+  String get monthlySummary;
+
+  /// Label for total income
+  ///
+  /// In en, this message translates to:
+  /// **'Total Income'**
+  String get totalIncome;
+
+  /// Label for total expense
+  ///
+  /// In en, this message translates to:
+  /// **'Total Expense'**
+  String get totalExpense;
+
+  /// Label for balance
+  ///
+  /// In en, this message translates to:
+  /// **'Balance'**
+  String get balance;
+
+  /// Label for expense by category section
+  ///
+  /// In en, this message translates to:
+  /// **'Expense by Category'**
+  String get expenseByCategory;
+
+  /// Message when no expense data is available
+  ///
+  /// In en, this message translates to:
+  /// **'No expense data available'**
+  String get noExpenseData;
+
+  /// Loading message
+  ///
+  /// In en, this message translates to:
+  /// **'Loading...'**
+  String get loading;
+
+  /// Filter button tooltip
+  ///
+  /// In en, this message translates to:
+  /// **'Filter'**
+  String get filter;
+
+  /// Date picker help text for selecting month and year
+  ///
+  /// In en, this message translates to:
+  /// **'Select Month and Year'**
+  String get selectMonthYear;
+
+  /// Label for year
+  ///
+  /// In en, this message translates to:
+  /// **'Year'**
+  String get year;
+
+  /// Label for month
+  ///
+  /// In en, this message translates to:
+  /// **'Month'**
+  String get month;
+
+  /// List view mode label
+  ///
+  /// In en, this message translates to:
+  /// **'List'**
+  String get list;
+
+  /// Chart view mode label
+  ///
+  /// In en, this message translates to:
+  /// **'Chart'**
+  String get chart;
 }
 
 class _AppLocalizationsDelegate

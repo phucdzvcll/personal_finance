@@ -80,5 +80,18 @@
   "editTransaction": "Modifier la Transaction",
   "updateTransaction": "Mettre à jour la Transaction",
   "transactionUpdatedSuccessfully": "Transaction mise à jour avec succès",
-  "transactionDeletedSuccessfully": "Transaction supprimée avec succès"
+  "transactionDeletedSuccessfully": "Transaction supprimée avec succès",
+  "monthlySummary": "Résumé Mensuel",
+  "totalIncome": "Revenus Totaux",
+  "totalExpense": "Dépenses Totales",
+  "balance": "Solde",
+  "expenseByCategory": "Dépenses par Catégorie",
+  "noExpenseData": "Aucune donnée de dépense disponible",
+  "loading": "Chargement...",
+  "filter": "Filtrer",
+  "selectMonthYear": "Sélectionner le Mois et l'Année",
+  "year": "Année",
+  "month": "Mois",
+  "list": "Liste",
+  "chart": "Graphique"
 }

@@ -328,5 +328,57 @@
   "transactionDeletedSuccessfully": "Transaction deleted successfully",
   "@transactionDeletedSuccessfully": {
     "description": "Success message after deleting transaction"
+  },
+  "monthlySummary": "Monthly Summary",
+  "@monthlySummary": {
+    "description": "Monthly summary title"
+  },
+  "totalIncome": "Total Income",
+  "@totalIncome": {
+    "description": "Label for total income"
+  },
+  "totalExpense": "Total Expense",
+  "@totalExpense": {
+    "description": "Label for total expense"
+  },
+  "balance": "Balance",
+  "@balance": {
+    "description": "Label for balance"
+  },
+  "expenseByCategory": "Expense by Category",
+  "@expenseByCategory": {
+    "description": "Label for expense by category section"
+  },
+  "noExpenseData": "No expense data available",
+  "@noExpenseData": {
+    "description": "Message when no expense data is available"
+  },
+  "loading": "Loading...",
+  "@loading": {
+    "description": "Loading message"
+  },
+  "filter": "Filter",
+  "@filter": {
+    "description": "Filter button tooltip"
+  },
+  "selectMonthYear": "Select Month and Year",
+  "@selectMonthYear": {
+    "description": "Date picker help text for selecting month and year"
+  },
+  "year": "Year",
+  "@year": {
+    "description": "Label for year"
+  },
+  "month": "Month",
+  "@month": {
+    "description": "Label for month"
+  },
+  "list": "List",
+  "@list": {
+    "description": "List view mode label"
+  },
+  "chart": "Chart",
+  "@chart": {
+    "description": "Chart view mode label"
   }
 }

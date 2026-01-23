@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
@@ -30,13 +31,30 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
   DateTime? _selectedDate;
   bool _categoryMatched = false;
   bool get _isEditMode => widget.transaction != null;
+  
+  final NumberFormat _numberFormat = NumberFormat.currency(
+    symbol: '',
+    decimalDigits: 0,
+  );
+  
+  String _formatNumber(String value) {
+    if (value.isEmpty) return '';
+    // Remove all non-digit characters
+    final digitsOnly = value.replaceAll(RegExp(r'[^\d]'), '');
+    if (digitsOnly.isEmpty) return '';
+    final number = int.tryParse(digitsOnly);
+    if (number == null) return '';
+    return _numberFormat.format(number);
+  }
 
   @override
   void initState() {
     super.initState();
     if (_isEditMode) {
       final transaction = widget.transaction!;
-      _amountController = TextEditingController(text: transaction.amount.toString());
+      _amountController = TextEditingController(
+        text: _numberFormat.format(transaction.amount),
+      );
       _noteController = TextEditingController(text: transaction.note ?? '');
       _selectedType = transaction.type;
       _selectedCategory = transaction.category;
@@ -95,7 +113,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
         return;
       }
 
-      final amount = double.tryParse(_amountController.text.trim());
+      // Remove formatting characters and parse
+      final cleanAmountText = _amountController.text.replaceAll(RegExp(r'[^\d]'), '');
+      final amount = int.tryParse(cleanAmountText);
       if (amount == null || amount <= 0) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
@@ -107,10 +127,12 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
       }
 
       final dateFormat = DateFormat('yyyy-MM-dd');
+      // Convert to double for API (amount is stored as double)
+      final amountDouble = amount.toDouble();
       if (_isEditMode) {
         context.read<TransactionFormCubit>().updateTransaction(
               id: widget.transaction!.id,
-              amount: amount,
+              amount: amountDouble,
               type: _selectedType,
               categoryId: _selectedCategory!.id,
               transactionDate: dateFormat.format(_selectedDate!),
@@ -120,7 +142,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
             );
       } else {
         context.read<TransactionFormCubit>().createTransaction(
-              amount: amount,
+              amount: amountDouble,
               type: _selectedType,
               categoryId: _selectedCategory!.id,
               transactionDate: dateFormat.format(_selectedDate!),
@@ -141,9 +163,15 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
           title: Text(_isEditMode ? context.l10n.editTransaction : context.l10n.addTransaction),
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(24.w),
-            child: BlocListener<TransactionFormCubit, TransactionFormState>(
+          child: GestureDetector(
+            onTap: () {
+              // Unfocus when tapping outside input fields
+              FocusScope.of(context).unfocus();
+            },
+            behavior: HitTestBehavior.opaque,
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(24.w),
+              child: BlocListener<TransactionFormCubit, TransactionFormState>(
               listener: (context, state) {
                 if (state is TransactionFormSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -156,7 +184,8 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                       backgroundColor: Colors.green,
                     ),
                   );
-                  context.router.pop();
+                  // Return true to indicate success and trigger refresh
+                  context.router.pop(true);
                 } else if (state is TransactionFormError) {
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -240,7 +269,22 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                         // Amount Field
                         TextFormField(
                           controller: _amountController,
-                          keyboardType: TextInputType.numberWithOptions(decimal: true),
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            TextInputFormatter.withFunction((oldValue, newValue) {
+                              if (newValue.text.isEmpty) {
+                                return newValue;
+                              }
+                              final formatted = _formatNumber(newValue.text);
+                              return TextEditingValue(
+                                text: formatted,
+                                selection: TextSelection.collapsed(
+                                  offset: formatted.length,
+                                ),
+                              );
+                            }),
+                          ],
                           decoration: InputDecoration(
                             labelText: context.l10n.amount,
                             hintText: context.l10n.enterAmount,
@@ -253,7 +297,9 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                             if (value == null || value.trim().isEmpty) {
                               return context.l10n.pleaseEnterAmount;
                             }
-                            final amount = double.tryParse(value.trim());
+                            // Remove formatting characters and parse
+                            final cleanValue = value.replaceAll(RegExp(r'[^\d]'), '');
+                            final amount = int.tryParse(cleanValue);
                             if (amount == null || amount <= 0) {
                               return context.l10n.amountMustBeGreaterThanZero;
                             }
@@ -394,6 +440,7 @@ class _AddTransactionPageState extends State<AddTransactionPage> {
                   );
                 },
               ),
+            ),
             ),
           ),
         ),

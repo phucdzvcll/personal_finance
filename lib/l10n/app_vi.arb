@@ -80,5 +80,18 @@
   "editTransaction": "Chỉnh Sửa Giao Dịch",
   "updateTransaction": "Cập Nhật Giao Dịch",
   "transactionUpdatedSuccessfully": "Cập nhật giao dịch thành công",
-  "transactionDeletedSuccessfully": "Xóa giao dịch thành công"
+  "transactionDeletedSuccessfully": "Xóa giao dịch thành công",
+  "monthlySummary": "Tóm Tắt Tháng",
+  "totalIncome": "Tổng Thu Nhập",
+  "totalExpense": "Tổng Chi Tiêu",
+  "balance": "Số Dư",
+  "expenseByCategory": "Chi Tiêu Theo Danh Mục",
+  "noExpenseData": "Không có dữ liệu chi tiêu",
+  "loading": "Đang tải...",
+  "filter": "Lọc",
+  "selectMonthYear": "Chọn Tháng và Năm",
+  "year": "Năm",
+  "month": "Tháng",
+  "list": "Danh sách",
+  "chart": "Biểu đồ"
 }

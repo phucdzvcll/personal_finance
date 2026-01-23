@@ -261,9 +261,15 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
           title: Text(_isEditMode ? context.l10n.editCategory : context.l10n.addNewCategory),
         ),
         body: SafeArea(
-          child: SingleChildScrollView(
-            padding: EdgeInsets.all(24.w),
-            child: BlocListener<CategoryFormCubit, CategoryFormState>(
+          child: GestureDetector(
+            onTap: () {
+              // Unfocus when tapping outside input fields
+              FocusScope.of(context).unfocus();
+            },
+            behavior: HitTestBehavior.opaque,
+            child: SingleChildScrollView(
+              padding: EdgeInsets.all(24.w),
+              child: BlocListener<CategoryFormCubit, CategoryFormState>(
               listener: (context, state) {
                 if (state is CategoryFormSuccess) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -520,6 +526,7 @@ class _AddCategoryPageState extends State<AddCategoryPage> {
                 );
                 },
               ),
+            ),
             ),
           ),
         ),

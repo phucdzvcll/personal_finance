@@ -257,4 +257,43 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get transactionDeletedSuccessfully =>
       'Transaction deleted successfully';
+
+  @override
+  String get monthlySummary => 'Monthly Summary';
+
+  @override
+  String get totalIncome => 'Total Income';
+
+  @override
+  String get totalExpense => 'Total Expense';
+
+  @override
+  String get balance => 'Balance';
+
+  @override
+  String get expenseByCategory => 'Expense by Category';
+
+  @override
+  String get noExpenseData => 'No expense data available';
+
+  @override
+  String get loading => 'Loading...';
+
+  @override
+  String get filter => 'Filter';
+
+  @override
+  String get selectMonthYear => 'Select Month and Year';
+
+  @override
+  String get year => 'Year';
+
+  @override
+  String get month => 'Month';
+
+  @override
+  String get list => 'List';
+
+  @override
+  String get chart => 'Chart';
 }

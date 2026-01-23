@@ -6,6 +6,7 @@ import 'l10n/app_localizations.dart';
 import 'core/constants/app_constants.dart';
 import 'core/router/app_router.dart';
 import 'core/utils/language_service.dart';
+import 'core/services/auth_service.dart';
 
 class App extends StatefulWidget {
   const App({super.key});
@@ -22,6 +23,8 @@ class _AppState extends State<App> {
   void initState() {
     super.initState();
     _loadSavedLocale();
+    // Set global router for AuthService
+    AuthService.setGlobalRouter(appRouter);
   }
 
   Future<void> _loadSavedLocale() async {

@@ -3,16 +3,21 @@ import 'package:injectable/injectable.dart';
 import '../../../data/datasources/local/shared_prefs_datasource.dart';
 import '../../../data/models/auth_response_model.dart';
 import '../../../core/constants/api_constants.dart';
+import '../../../core/services/auth_service.dart';
 import 'dart:convert';
 
 @injectable
 class AuthInterceptor extends Interceptor {
   final SharedPrefsDataSource _sharedPrefsDataSource;
+  final AuthService _authService;
   final Dio _refreshDio;
   bool _isRefreshing = false;
   final List<_PendingRequest> _pendingRequests = [];
 
-  AuthInterceptor(this._sharedPrefsDataSource)
+  AuthInterceptor(
+    this._sharedPrefsDataSource,
+    this._authService,
+  )
       : _refreshDio = Dio(
           BaseOptions(
             baseUrl: ApiConstants.baseUrl,
@@ -63,8 +68,8 @@ class AuthInterceptor extends Interceptor {
       try {
         final refreshToken = _sharedPrefsDataSource.getRefreshToken();
         if (refreshToken == null) {
-          // No refresh token, clear tokens and reject
-          await _clearTokens();
+          // No refresh token, force logout and navigate to login
+          await _authService.forceLogout();
           handler.reject(err);
           return;
         }
@@ -72,8 +77,8 @@ class AuthInterceptor extends Interceptor {
         // Attempt to refresh token
         final newTokens = await _refreshToken(refreshToken);
         if (newTokens == null) {
-          // Refresh failed, clear tokens and reject
-          await _clearTokens();
+          // Refresh failed, force logout and navigate to login
+          await _authService.forceLogout();
           handler.reject(err);
           return;
         }
@@ -94,8 +99,8 @@ class AuthInterceptor extends Interceptor {
         // Process pending requests
         _processPendingRequests(newTokens.accessToken);
       } catch (e) {
-        // Refresh failed, clear tokens
-        await _clearTokens();
+        // Refresh failed, force logout and navigate to login
+        await _authService.forceLogout();
         handler.reject(err);
         _rejectPendingRequests(err);
       } finally {
@@ -131,10 +136,6 @@ class AuthInterceptor extends Interceptor {
     }
   }
 
-  Future<void> _clearTokens() async {
-    await _sharedPrefsDataSource.removeToken();
-    await _sharedPrefsDataSource.removeRefreshToken();
-  }
 
   Future<void> _processPendingRequests(String newToken) async {
     for (final pending in _pendingRequests) {

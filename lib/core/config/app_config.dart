@@ -17,7 +17,7 @@ class AppConfig {
   // Development environment
   static const AppConfig dev = AppConfig(
     appName: 'Personal Finance (Dev)',
-    apiBaseUrl: 'http://192.168.10.192:3000/api',
+    apiBaseUrl: 'http://10.10.1.100:3000/api',
     environment: 'dev',
     enableLogging: true,
     enableCrashReporting: false,
